@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--Задача 64-->
+<!--Разбиение картинки-->
+<!--Дана картинка. Разбейте ее на N прямоугольников и перемешайте эти прямоугольники в случайном порядке.-->
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body onload="x()">
+
+<canvas id="canvas" width="1280" height="900"></canvas>
+
+<div >
+  <img id="pic2" width="1280" height="900"
+       src="https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80">
+</div>
+
+
+<script>
+    let pic2 = document.getElementById("pic2");
+    let canvas = document.getElementById("canvas");
+    //скрываем канвас чтобы не занимал место
+    canvas.hidden = true;
+
+    function x() {
+        setTimeout(() => {
+            //скрыем старую картинку
+            pic2.hidden = true;
+            // открываем канвас для отрисовки
+            canvas.hidden = false;
+            // вызываем функцию
+            draw()
+
+        }, 1000)
+
+    }
+
+    //высота 1280  ширина 720
+    function draw() {
+
+        // режем функцию на 5 кусков
+        let ctx1 = canvas.getContext("2d");
+        let ctx2 = canvas.getContext("2d");
+        let ctx3 = canvas.getContext("2d");
+        let ctx4 = canvas.getContext("2d");
+        let ctx5 = canvas.getContext("2d");
+
+
+        let w1 = 0, w2 = 256, w3 = 512, w4 = 768, w5 = 1024;
+        let arr = [w1, w2, w3, w4, w5];
+        // мешаем куски
+        arr.sort(() => Math.random() - 0.5);
+        ctx1.drawImage(
+            document.getElementById("pic2"), 0, 0, 256, 900, arr[0], 0, 256, 900
+        );
+        ctx2.drawImage(
+            document.getElementById("pic2"), 256, 0, 256, 900, arr[1], 0, 256, 900
+        );
+        ctx3.drawImage(
+            document.getElementById("pic2"), 512, 0, 256, 900, arr[2], 0, 256, 900
+        );
+        ctx4.drawImage(
+            document.getElementById("pic2"), 768, 0, 256, 900, arr[3], 0, 256, 900
+        );
+        ctx5.drawImage(
+            document.getElementById("pic2"), 1024, 0, 256, 900, arr[4], 0, 256, 900
+        );
+    }
+
+
+</script>
+</body>
+</html>
