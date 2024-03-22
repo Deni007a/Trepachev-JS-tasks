@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task_74</title>
+  <style>
+      table {
+          width: 100%;
+          border: 4px double black;
+          border-collapse: collapse; /* Отображать только одинарные линии */
+      }
+
+      th {
+          text-align: center;
+          background: #ccc;
+          border: 1px solid black; /* Граница вокруг ячеек */
+      }
+
+      td {
+          padding: 5px;
+          border: 1px solid black;
+      }
+
+      .red {
+          background: red;
+      }
+  </style>
+</head>
+<body>
+<h1>Задача 74</h1>
+<div>
+  <p>Центральный квадратик таблицы</p>
+
+  <p>Дана прямоугольная HTML таблица с четным количеством рядов и колонок. По нажатию на кнопку выделите 4 центральных
+    ячейки этой таблицы</p>
+</div>
+<table>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+    <th>6</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+    <th>6</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+    <th>6</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+    <th>6</th>
+  </tr>
+
+</table>
+<hr>
+<button>Solution</button>
+<script>
+    const trs = Array.from(document.querySelectorAll("tr"));
+    const button = document.querySelector("button");
+
+    const trsLength = trs.length / 2;
+    const cellsLength = trs[0].cells.length / 2;
+    const cells = [
+        trs[trsLength - 1].cells[cellsLength - 1],
+        trs[trsLength - 1].cells[cellsLength],
+        trs[trsLength].cells[cellsLength - 1],
+        trs[trsLength].cells[cellsLength]
+    ];
+    button.addEventListener("click", function () {
+        cells.forEach(element => {
+            element.classList.toggle("red");
+        });
+    });
+</script>
+</body>
+</html>
