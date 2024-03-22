@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task_73</title>
+  <style>
+      table {
+          width: 100%;
+          border: 4px double black;
+          border-collapse: collapse; /* Отображать только одинарные линии */
+      }
+
+      th {
+          text-align: center;
+          background: #ccc;
+          border: 1px solid black; /* Граница вокруг ячеек */
+      }
+
+      td {
+          padding: 5px;
+          border: 1px solid black;
+      }
+      .red{
+          background: red;
+      }
+  </style>
+</head>
+<body>
+<h1>Задача 73</h1>
+<div>
+  <p> Центральная ячейка таблицы</p>
+
+  <p> Дана прямоугольная HTML таблица с нечетным количеством рядов и колонок. По нажатию на кнопку выделите
+    центральную
+    ячейку этой таблицы.</p>
+</div>
+<table>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+  </tr>
+</table>
+<hr>
+<button>Solution</button>
+<script>
+    const trs = Array.from(document.querySelectorAll("tr"));
+    const button = document.querySelector("button");
+
+    const cell =
+        trs[Math.floor(trs.length / 2)].cells[
+            Math.floor(trs[0].cells.length / 2)
+            ];
+    button.addEventListener("click", function () {
+        cell.classList.toggle("red");
+    });
+</script>
+</body>
+</html>
