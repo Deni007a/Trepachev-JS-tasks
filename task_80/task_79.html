@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task_80</title>
+  <style>
+      * {
+          box-sizing: border-box;
+      }
+      div {
+          width: 200px;
+          position: absolute;
+          border: 1px solid red;
+          opacity: 50%;
+      }
+
+      #div1, #div2 {
+          height: 200px;
+      }
+
+      #div1 {
+          background: gold;
+          z-index: 1;
+          text-align: left;
+
+      }
+
+      #div2 {
+          background: fuchsia;
+          z-index: 2;
+          text-align: center;
+      }
+
+      #div3 {
+          margin-left: 50px;
+          margin-top: 50px;
+          height: 200px;
+          background: limegreen;
+          z-index: 3;
+          text-align: right;
+      }
+
+
+  </style>
+</head>
+<body>
+<h1>Задача 80</h1>
+<section>
+  <h2>Площадь наложения элементов</h2>
+
+  <p>Даны два элемента с абсолютным позиционированием. Элементы накладываются друг на друга. Найдите площадь
+    наложения.</p>
+</section>
+<div id="div1">div1</div>
+<div id="div2">div2</div>
+<div id="div3">div3</div>
+
+
+<script>
+    const div1 = document.getElementById("div1");
+    const div2 = document.getElementById("div2");
+    const div3 = document.getElementById("div3");
+
+
+    let DOMRect1 = div1.getBoundingClientRect();
+    let DOMRect2 = div2.getBoundingClientRect();
+    let DOMRect3 = div3.getBoundingClientRect();
+
+    // проверяем накладывается ли элементы
+    function compare_Element_Positions(elem1, elem2) {
+        const coordsElem1 = elem1.getBoundingClientRect();
+        const coordsElem2 = elem2.getBoundingClientRect();
+        if (
+            (
+                (coordsElem2.left <= coordsElem1.right && coordsElem2.left >= coordsElem1.left) ||
+                (coordsElem2.right <= coordsElem1.right && coordsElem2.right >= coordsElem1.left)
+            ) && (
+                (coordsElem2.top <= coordsElem1.bottom && coordsElem2.top >= coordsElem1.top) ||
+                (coordsElem2.bottom <= coordsElem1.bottom && coordsElem2.bottom >= coordsElem1.top)
+            )
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //  ищем площадь
+    function find_the_area_of_contact(elem1, elem2) {
+        //проверяем накладывается или нет
+        if (compare_Element_Positions(elem1, elem2)) {
+            const coordsElem1 = elem1.getBoundingClientRect();
+            const coordsElem2 = elem2.getBoundingClientRect();
+            //console.log(coordsElem1," ELM 1")
+            //console.log(coordsElem2," ELM 3")
+
+
+            // ищем точку x, y верхнего угла
+            let top_x = coordsElem1.x > coordsElem2.x ? coordsElem1.x : coordsElem2.x;
+            let top_y = coordsElem1.y > coordsElem2.y ? coordsElem1.y : coordsElem2.y;
+             //console.log(top_x)
+            // console.log(top_y)
+
+            // ищем точку x, y нижнего угла
+
+            let bottom_x = coordsElem1.right < coordsElem2.right ? coordsElem1.right : coordsElem2.right;
+            let bottom_y = coordsElem1.bottom < coordsElem2.bottom ? coordsElem1.bottom : coordsElem2.bottom;
+             //console.log(bottom_x)
+            // console.log(bottom_y)
+
+            //ищем ширину
+            let x_max = Math.max(top_x, bottom_x);
+            let x_min = Math.min(top_x, bottom_x);
+            let width = x_max - x_min;
+            console.log(width, " width")
+
+            //ищем высоту height
+             let y_max = Math.max(top_y, bottom_y);
+             let y_min = Math.min(top_y, bottom_y);
+             let height = y_max - y_min;
+
+            console.log(height, " height")
+
+            let area = width*height;
+            console.log(area, "area")
+            return  area
+
+        } else {
+            return "Элементы не накладываются друг на друга"
+        }
+
+    }
+
+
+    find_the_area_of_contact(div1, div3)
+
+</script>
+</body>
+</html>
