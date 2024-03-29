@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task_79</title>
+  <style>
+      div {
+          width: 200px;
+          position: absolute;
+          border: 1px solid red;
+          opacity: 50%;
+      }
+
+      #div1, #div2 {
+          height: 200px;
+      }
+
+      #div1 {
+          background: gold;
+          z-index: 1;
+          text-align: left;
+      }
+
+      #div2 {
+          background: fuchsia;
+          z-index: 2;
+          text-align: center;
+      }
+
+      #div3 {
+          margin-top: 250px;
+          margin-left: 15px;
+          height: 200px;
+          background: limegreen;
+          z-index: 3;
+          text-align: right;
+      }
+      #div4 {
+          margin-top: 250px;
+          margin-left: 300px;
+          height: 200px;
+          background: limegreen;
+          z-index: 3;
+          text-align: right;
+      }
+
+
+  </style>
+</head>
+<body>
+<h1>Задача 79</h1>
+<section>
+  <h2>Наложение элементов</h2>
+
+  <p>Даны два элемента с абсолютным позиционированием. Проверьте, накладываются ли элементы друг на друга.</p>
+</section>
+<div id="div1">div1</div>
+<div id="div2">div2</div>
+<div id="div3">div3</div>
+<div id="div4">div4</div>
+
+<script>
+    const div1 = document.getElementById("div1");
+    const div2 = document.getElementById("div2");
+    const div3 = document.getElementById("div3");
+    const div4 = document.getElementById("div4");
+
+    let DOMRect1 = div1.getBoundingClientRect();
+    let DOMRect2 = div2.getBoundingClientRect();
+    let DOMRect3 = div3.getBoundingClientRect();
+    let DOMRect4 = div4.getBoundingClientRect();
+    // console.log(DOMRect1)
+    // console.log(DOMRect2)
+    // console.log(DOMRect3)
+    // console.log(DOMRect4)
+
+    function compare_Element_Positions(elem1, elem2) {
+        const coordsElem1 = elem1.getBoundingClientRect();
+        const coordsElem2 = elem2.getBoundingClientRect();
+        if (
+            (
+                (coordsElem2.left <= coordsElem1.right && coordsElem2.left >= coordsElem1.left) ||
+                (coordsElem2.right <= coordsElem1.right && coordsElem2.right >= coordsElem1.left)
+            ) && (
+                (coordsElem2.top <= coordsElem1.bottom && coordsElem2.top >= coordsElem1.top) ||
+                (coordsElem2.bottom <= coordsElem1.bottom && coordsElem2.bottom >= coordsElem1.top)
+            )
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    console.log(compare_Element_Positions(div1, div2));
+    console.log(compare_Element_Positions(div1, div3));
+    console.log(compare_Element_Positions(div1, div4));
+
+
+</script>
+</body>
+</html>
