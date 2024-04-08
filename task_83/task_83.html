@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tack_83</title>
+  <style>
+      td {
+          border: 1px solid #000;
+          width: 50px;
+          height: 50px;
+
+      }
+
+
+      table {
+          border: 3px solid #000;
+          border-spacing: unset;
+          margin: auto;
+      }
+
+      button {
+          margin: 25px auto;
+          display: block;
+      }
+  </style>
+
+</head>
+<body>
+
+<h1>Задача 83</h1>
+<div>
+  <p>Увеличение таблицы</p>
+  Дана HTML таблица и кнопка. По клику на кнопку увеличьте таблицу на 1 ряд и на 1 колонку.
+</div>
+<hr>
+<table id="table">
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<button id="button">Button</button>
+
+<script>
+    const table = document.querySelector("table");
+    const btn = document.querySelector("button");
+
+    btn.onclick = () => {
+        // добовляем новую клетку
+        [...table.rows].forEach((row) => row.insertCell());
+
+        // метод вставляет новую строку  таблицы
+        const newRow = table.insertRow();
+        // добовляем клетки
+        for (let i = 0; i <= table.rows[0].cells.length; i++) {
+            newRow.insertCell();
+        }
+    }
+</script>
+</body>
+</html>
