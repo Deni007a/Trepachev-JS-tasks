@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tack 82</title>
+</head>
+<body>
+<h1>Задача 82</h1>
+<div>
+  <p>Горячия клавиши перехода по ссылке</p>
+  Дана ссылка. Сделайте комбинацию горячих клавиш, которые автоматически откроют страницу из href ссылки.
+</div>
+<hr>
+<p>pres kay "Alt + g"</p>
+<a id ="myLink" href="">Link</a>
+
+<script>
+
+    function handleShortcut(event) {
+        if (event.altKey  && event.key === 'g') {
+            console.log("event.altKey  && event.key === 'g'")
+            let link = document.getElementById('myLink');
+            if (link) {
+                window.open(link.href, '_blank');
+            }
+        }
+    }
+    document.addEventListener('keydown', handleShortcut);
+</script>
+
+</body>
+</html>
