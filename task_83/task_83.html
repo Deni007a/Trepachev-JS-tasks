@@ -37,6 +37,7 @@
   <tr>
     <td></td>
     <td></td>
+    <td></td>
   </tr>
 </table>
 
@@ -53,7 +54,7 @@
         // метод вставляет новую строку  таблицы
         const newRow = table.insertRow();
         // добовляем клетки
-        for (let i = 0; i <= table.rows[0].cells.length; i++) {
+        for (let i = 0; i <= table.rows[0].cells.length-1; i++) {
             newRow.insertCell();
         }
     }
