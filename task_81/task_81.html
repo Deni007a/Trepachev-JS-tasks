@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TASK 81</title>
+  <style>
+      td {
+          border: 1px solid #000;
+          width: 50px;
+          height: 50px;
+
+      }
+
+
+      table {
+          border: 3px solid #000;
+          border-spacing: unset;
+          margin: auto;
+      }
+
+      button {
+          margin: 25px auto;
+          display: block;
+      }
+  </style>
+</head>
+<body>
+<h1>TASK 81</h1>
+<div>
+  <p>Нумерация по столбцам</p>
+
+  Заполните таблицу порядковыми значениями по столбцам:
+  <pre>
+    01  05  09  13
+    02  06  10  14
+    03  07  11  15
+    04  08  12  16
+  </pre>
+</div>
+
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<button>Button</button>
+
+<script>
+
+    const table = document.querySelector("table");
+    const btn = document.querySelector("button");
+
+
+    function task() {
+        let start = 1;
+        let rows = table.rows
+        console.log(rows[0].cells.length);
+        [...rows].map(x => {
+            [...x.cells].map(x2 => {
+                x2.innerHTML = start;
+                start = start + 1;
+            })
+        })
+
+    }
+
+    btn.onclick = task;
+</script>
+</body>
+</html>
