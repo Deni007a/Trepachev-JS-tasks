@@ -62,13 +62,14 @@
 </table>
 
 <button id="button">Button</button>
+<button id="button2">variant N2</button>
 
 <script>
     const table = document.querySelector("table");
     const btn = document.querySelector("button");
 
+    // var 1
     btn.onclick = () => {
-
         // удаляем строку
         let row_size = table.rows.length;
 
@@ -92,8 +93,22 @@
             parent_size.removeChild(last_cells)
         } )
 
-
     }
+
+   // var 2
+    const table2 = document.querySelector("table");
+    const btn2 = document.querySelector("#button2");
+    console.log(btn2)
+    btn2.onclick = () => {
+        if (table2.rows.length > 0) {
+            table2.deleteRow(-1);
+            Array.from(table2.rows).forEach((row) => {
+                if (row.cells.length > 0) {
+                    row.deleteCell(-1);
+                }
+            });
+        }
+    };
 </script>
 </body>
 </html>
