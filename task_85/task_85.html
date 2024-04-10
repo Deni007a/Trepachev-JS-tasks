@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tack 85</title>
+  <style>
+
+      img{
+          position: absolute;
+      }
+
+      canvas {
+          position: absolute;
+          border: 1px solid black;
+      }
+
+  </style>
+
+</head>
+<body>
+<h1>Задача 85</h1>
+<div>
+  <p>Стрелка на канвасе</p>
+  Дана картинка. Наложите поверх картинки тег canvas. Сделайте функцию, которая будет рисовать на канвасе стрелку
+  заданной длины, повернутую на заданный угол и концом упирающуюся в заданную точку.
+</div>
+<hr>
+<div class="draw">
+  <img src="istockphoto-1367756031-1024x1024.webp" height="500" width="500"/>
+  <canvas id="canvas" width="500" height="500"></canvas>
+</div>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.lineWidth = 1;
+
+    function drawArrow(endX, endY, length, angle) {
+        const headLength = 10; // Длина конца стрелки
+        const radianAngle = (angle * Math.PI) / 180; // Угол в радианах
+
+        // Вычисляем координаты начала стрелки
+        const startX = endX - length * Math.cos(radianAngle);
+        const startY = endY - length * Math.sin(radianAngle);
+
+        // Рисуем тело стрелки
+
+        ctx.beginPath(); //рисуем линию
+        //перемещает начальную точку нового фрагмента контура в координаты (x, y)
+        ctx.moveTo(startX, startY);
+        //добавляет линию к текущему под пути с конечной точкой с координатами (x, y)
+        ctx.lineTo(endX, endY);
+        //обводит текущий или данный контур цветом strokeStyle.
+        ctx.stroke();
+
+        // Рисуем конец стрелки
+        ctx.beginPath();
+        ctx.moveTo(
+            endX - headLength * Math.cos(radianAngle - Math.PI / 6),
+            endY - headLength * Math.sin(radianAngle - Math.PI / 6)
+        );
+        ctx.lineTo(endX, endY);
+        ctx.lineTo(
+            endX - headLength * Math.cos(radianAngle + Math.PI / 6),
+            endY - headLength * Math.sin(radianAngle + Math.PI / 6)
+        );
+        ctx.fill();
+    }
+
+    drawArrow(10, 100, 200, 90);
+</script>
+</body>
+</html>
