@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task 87</title>
+  <style>
+      td {
+          border: 1px solid #000;
+          width: 50px;
+          height: 50px;
+
+      }
+
+
+      table {
+          border: 3px solid #000;
+          border-spacing: unset;
+          margin: auto;
+      }
+
+      button {
+          margin: 25px auto;
+          display: block;
+      }
+  </style>
+</head>
+<body>
+<h1>Задача 87</h1>
+<div>
+  <p>Редактирование ячейки таблицы</p>
+  Дана HTML таблица. Сделайте так, чтобы по клику на ячейку в ней появлялся инпут, с помощью которого можно
+  поредактировать текст этой ячейки.
+</div>
+<hr>
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<script>
+
+    const table = document.querySelector("table");
+
+    table.addEventListener("click", funInput)
+
+
+
+    function funInput(e) {
+        let content = null
+        if (e.target.tagName === "TD") {
+            const input = document.createElement("input");
+            input.addEventListener("input", () => {
+                content = input.value;
+            });
+            input.addEventListener("blur", () => {
+                const parent = input.parentElement;
+                parent.innerHTML = input.value;
+            });
+
+            if (!e.target.contains(input)) {
+                input.value = e.target.innerText;
+                e.target.innerHTML = "";
+                e.target.appendChild(input);
+                input.focus();
+            }
+
+        }
+    }
+
+
+</script>
+</body>
+</html>
