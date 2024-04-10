@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task_86</title>
+</head>
+<body>
+<h1>Задача 86</h1>
+<div>
+  <p>Крестики-нолики на канвасе</p>
+  Реализуйте игру крестики-нолики на основе тега canvas.
+</div>
+<hr>
+<style>
+    canvas {
+        border: 1px solid black;
+    }
+</style>
+<canvas id="gameCanvas" width="300" height="300"></canvas>
+<button id="resetBtn">Reset Game</button>
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const resetBtn = document.getElementById('resetBtn');
+
+    let move = ['O', 'X'];
+    let count = 0;
+    let player = 'X';
+    let data = [];
+    // матрица выигрышей
+    let winMatrix = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    canvas.addEventListener('click', handleMove);
+    resetBtn.addEventListener('click', resetGame);
+
+    function handleMove(event) {
+        let x = event.offsetX;
+        let y = event.offsetY;
+        let cellSize = canvas.width / 3;
+        /// вычисляем в какой колонке столбике нажали
+        let row = Math.floor(y / cellSize);
+        let col = Math.floor(x / cellSize);
+
+        if (data[row * 3 + col] || checkWin()) {
+            return;
+        }
+
+        data[row * 3 + col] = player;
+        count++;
+
+        drawBoard();
+
+        if (!checkWin() && count === 9) {
+            alert('Это ничья!');
+        }
+
+        player = player === 'X' ? 'O' : 'X';
+    }
+
+    function resetGame() {
+        count = 0;
+        player = 'X';
+        data = [];
+        drawBoard();
+    }
+
+    function drawBoard() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        let cellSize = canvas.width / 3;
+
+        ctx.beginPath();
+        for (let i = 1; i < 3; i++) {
+            ctx.moveTo(i * cellSize, 0);
+            ctx.lineTo(i * cellSize, canvas.height);
+            ctx.moveTo(0, i * cellSize);
+            ctx.lineTo(canvas.width, i * cellSize);
+        }
+        ctx.stroke();
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                let cell = data[i * 3 + j];
+                if (cell) {
+                    ctx.fillText(cell, j * cellSize + 0.5 * cellSize, i * cellSize + 0.5 * cellSize);
+                }
+            }
+        }
+    }
+
+    function checkWin() {
+        for (let i = 0; i < winMatrix.length; i++) {
+            let [a, b, c] = winMatrix[i];
+            if (data[a] && data[a] === data[b] && data[a] === data[c]) {
+                alert(`Игрок ${data[a]} выиграл!`);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    drawBoard();
+</script>
+</body>
+</html>
