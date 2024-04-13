@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task 90</title>
+  <style>
+      .button {
+          margin: 50px;
+      }
+  </style>
+</head>
+<body>
+<h1>Задача 90</h1>
+<div>
+  <p>Выделение текста</p>
+  Дан див и кнопка. По клику на кнопку сделайте так, чтобы текст дива стал выделенным, как будто мы его выделили мышкой.
+</div>
+<hr>
+
+<div class="div">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam blanditiis corporis distinctio ducimus error
+  explicabo fugiat harum labore minima modi molestiae nisi possimus similique, sunt suscipit veritatis voluptate?
+  <i>Accusantium, architecto?</i>
+</div>
+<button class="button">button</button>
+<script>
+
+    const div = document.querySelector('.div');
+    const button = document.querySelector('.button');
+    // Variant 1
+
+    // button.addEventListener('click', () => {
+    //     const range = document.createRange();
+    //     range.selectNodeContents(div);
+    //
+    //     const selection = window.getSelection();
+    //     selection.removeAllRanges();
+    //     selection.addRange(range);
+    // });
+
+
+    //Variant 2
+
+    class TextSelection {
+        handleEvent() {
+            let range = new Range();
+            range.setStart(div,0);
+            //div.childNodes.length длина потомков
+            range.setEnd(div,div.childNodes.length);
+            console.log(range.toString())
+            document.getSelection().addRange(range)
+        }
+    }
+
+    let  textSelection = new TextSelection()
+
+    button.addEventListener('click', textSelection)
+
+
+
+
+
+</script>
+</body>
+</html>
