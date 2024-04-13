@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task 87</title>
+  <style>
+
+  </style>
+</head>
+<body>
+<h1>Задача 89</h1>
+<div>
+  <p>Авто перехода фокуса инпутов</p>
+  Даны три инпута. Сделайте так, чтобы по вводу двух цифр в инпут фокус ввода переходил к следующему инпуту.
+</div>
+<hr>
+<input type="text" name="" >
+<input type="text" name="" >
+<input type="text" name="" >
+
+<script>
+
+    const inputs = document.querySelectorAll('input');
+    console.log(inputs)
+
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (input.value.length === 2 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+    });
+
+
+
+</script>
+</body>
+</html>
