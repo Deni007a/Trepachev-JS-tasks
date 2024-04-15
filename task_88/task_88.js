@@ -6,8 +6,6 @@
  */
 
 import moment from "moment";
-let data_1 = "2024-04-10";
-let data_2 = "2024-04-25";
 
 let temp =moment(data_2).diff(data_1,'day');
 console.log(temp)
