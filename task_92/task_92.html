@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task 92</title>
+  <style>
+
+  </style>
+</head>
+<body>
+<h1>Задача 92</h1>
+<div>
+  <p>Выбор даты селектами</p>
+  Дано три селекта для выбора даты: с днями, месяцами и годами. Дни изменяются от 1 до последнего дня выбранного месяца.
+  Сделайте так, чтобы при смене месяца или года соответствующим образом изменялось максимальное количество дней в
+  селекте с днями.
+</div>
+<hr>
+<select id="days"></select>
+<select id="months" onchange="updateDays()">
+  <option value="1">Январь</option>
+  <option value="2">Февраль</option>
+  <option value="3">Март</option>
+  <option value="4">Апрель</option>
+  <option value="5">Май</option>
+  <!-- Добавьте остальные месяцы -->
+</select>
+<select id="years" onchange="updateDays()">
+  <!-- Добавьте нужные года -->
+</select>
+
+<script>
+    function updateDays() {
+        const daysSelect = document.getElementById('days');
+        const monthsSelect = document.getElementById('months');
+        const yearsSelect = document.getElementById('years');
+
+        const selectedMonth = parseInt(monthsSelect.value);
+        const selectedYear = parseInt(yearsSelect.value);
+
+        // удалям  <option>
+        daysSelect.innerHTML = ""
+
+        const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const option = document.createElement('option');
+            option.text = "" + day;
+            option.value = "" + day;
+            daysSelect.add(option);
+        }
+    }
+
+    // Заполнение селекта с годами
+    let startYeard = 20;
+    let endYeard = 20;
+    const yearsSelect = document.getElementById('years');
+    const currentYear = new Date().getFullYear();
+    for (let year = currentYear - startYeard; year <= currentYear + endYeard; year++) {
+        const option = document.createElement('option');
+        option.text = year;
+        option.value = year;
+        yearsSelect.add(option);
+    }
+
+    // Инициализация селекта с днями
+    updateDays();
+</script>
+</body>
+</html>
