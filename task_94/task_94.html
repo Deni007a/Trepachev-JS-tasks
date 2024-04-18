@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 94</title>
+  <style>
+
+  </style>
+</head>
+<body>
+<h1>Задача 94</h1>
+<div>
+  <p>Расстановка нумерации строк</p>
+  Дан див с многострочным текстом. Напишите скрипт, который слева от дива поместит нумерацию строк текста.
+</div>
+<hr>
+<div id="div">
+  line
+  line
+  line
+  line
+  line
+</div>
+
+<script>
+    const div = document.getElementById('div');
+    const lines = div.textContent.trim().split('\n');
+
+    let temp = '';
+    lines.forEach((line, num = 0) => {
+        temp += `${num + 1}. ${line}\n <br>`;
+    });
+
+    div.innerHTML = temp;
+</script>
+</body>
+</html>
