@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task_96</title>
+</head>
+<body>
+<h1>Загрузка картинок через асинхронные коллбэки в JavaScript</h1>
+<p>
+  Давайте реализуем функцию loadImage, которая будет загружать картинки. Пусть первым параметром эта функция принимает путь к картинке, а вторым - коллбэк, который выполнится, когда картинка будет загружена:
+</p>
+</body>
+<script>
+
+    let src = "https://images.pexels.com/photos/17786579/pexels-photo-17786579.jpeg?cs=srgb&dl=pexels-badun-17786579.jpg&fm=jpg&w=640&h=427"
+
+
+    function loadImage(imagePath, callback) {
+        let x = document.createElement("img");
+        x.src = imagePath;
+
+        x.onload = function() {
+            callback(x, null);
+        };
+        x.onerror = function() {
+            callback(null,new Error('Failed to load the image'));
+        };
+        x.src = imagePath;
+
+    }
+
+    loadImage(src, function(image, err) {
+        console.log(image, err);
+    });
+    loadImage(src, function (image, err) {
+        console.log(src)
+        if (!err) {
+            document.body.append(image);
+        } else {
+            console.log('произошла ошибка: ' + err);
+        }
+    });
+
+</script>
+</html>
+

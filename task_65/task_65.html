@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task_65</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+      }
+
+      header {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          background-color: #333;
+      }
+
+      nav ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+      }
+
+      nav li {
+          margin-right: 20px;
+      }
+
+      nav a {
+          color: white;
+          text-decoration: none;
+      }
+
+      .section {
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .active {
+          font-weight: bold;
+      }
+  </style>
+</head>
+<body>
+<h1>Ссылки на блоки страницы</h1>
+<p>Дана фиксированная менюшка, ссылающаяся на определенные блоки страницы. Сделайте так, чтобы по мере прокрутки страницы, когда страница прокручена на определенном блоке, в меню выделялась соответствующая ссылка.</p>
+
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="#section1" class="menu-link">Section 1</a></li>
+      <li><a href="#section2" class="menu-link">Section 2</a></li>
+      <li><a href="#section3" class="menu-link">Section 3</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="section1" class="section">Section 1</section>
+<section id="section2" class="section">Section 2</section>
+<section id="section3" class="section">Section 3</section>
+
+<p>Этот код будет добавлять класс active к ссылке в меню, соответствующей разделу на экране, когда пользователь прокручивает страницу.</p>
+<script !src="">
+    const menuLinks = document.querySelectorAll('.menu-link');
+    const sections = document.querySelectorAll('.section');
+
+    function changeLinkState() {
+        let index = sections.length;
+
+        while(--index && window.scrollY + 50 < sections[index].offsetTop) {}
+
+        menuLinks.forEach((link) => link.classList.remove('active'));
+        menuLinks[index].classList.add('active');
+    }
+
+    changeLinkState();
+    window.addEventListener('scroll', changeLinkState)
+</script>
+
+</body>
+</html>
