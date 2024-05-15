@@ -41,6 +41,7 @@
 
       .active {
           font-weight: bold;
+          color: red;
       }
   </style>
 </head>
@@ -71,7 +72,12 @@
     function changeLinkState() {
         let index = sections.length;
 
-        while(--index && window.scrollY + 50 < sections[index].offsetTop) {}
+        // console.log(window.scrollY)
+        // console.log(sections.length)
+        // console.log(sections[index-1].offsetTop)
+        while(--index && window.scrollY + 50 < sections[index-1].offsetTop) {
+
+        }
 
         menuLinks.forEach((link) => link.classList.remove('active'));
         menuLinks[index].classList.add('active');
