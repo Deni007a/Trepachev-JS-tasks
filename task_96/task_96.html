@@ -7,7 +7,8 @@
 <body>
 <h1>Загрузка картинок через асинхронные коллбэки в JavaScript</h1>
 <p>
-  Давайте реализуем функцию loadImage, которая будет загружать картинки. Пусть первым параметром эта функция принимает путь к картинке, а вторым - коллбэк, который выполнится, когда картинка будет загружена:
+  Давайте реализуем функцию loadImage, которая будет загружать картинки. Пусть первым параметром эта функция принимает
+  путь к картинке, а вторым - коллбэк, который выполнится, когда картинка будет загружена:
 </p>
 </body>
 <script>
@@ -16,24 +17,19 @@
 
 
     function loadImage(imagePath, callback) {
-        let x = document.createElement("img");
-        x.src = imagePath;
+        let img = document.createElement("img");
+        img.src = imagePath;
 
-        x.onload = function() {
-            callback(x, null);
-        };
-        x.onerror = function() {
-            callback(null,new Error('Failed to load the image'));
-        };
-        x.src = imagePath;
+        img.onload = () => callback(x, null);
 
+        img.onerror = () => callback(null, new Error('Failed to load the image'));
+
+        img.src = imagePath;
     }
 
-    loadImage(src, function(image, err) {
-        console.log(image, err);
-    });
-    loadImage(src, function (image, err) {
-        console.log(src)
+
+    loadImage(src, (image, err) => {
+        //console.log(src)
         if (!err) {
             document.body.append(image);
         } else {
