@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>task_99</title>
+</head>
+<body>
+<h1>Загрузка картинок через промисы</h1>
+<p>
+  Давайте реализуем функцию loadImage, которая будет загружать картинки. Пусть первым параметром эта функция принимает
+  путь к картинке, Напишите код, который загрузит картинку и добавит в конец боди
+  конец body. :
+</p>
+</body>
+<script>
+
+    let src = ["xbox.jpg", 'relax.png'];
+
+    function loadImage(path) {
+        return new Promise(function(resolve, reject) {
+            let image = document.createElement('img');
+            image.src = path;
+
+            image.addEventListener('load', function() {
+                resolve(image);
+            });
+            image.addEventListener('error', function() {
+                reject(new Error("image " + path + "  loaderror"));
+            });
+        });
+    }
+
+    loadImage('relax.png').then(function(image) {
+        document.body.appendChild(image);
+    }).catch(function(error) {
+        console.log(error);
+    });
+
+</script>
+</body>
