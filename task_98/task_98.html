@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task_98</title>
+</head>
+<body>
+<h1>Загрузка картинок через промисы</h1>
+<p>
+  Давайте реализуем функцию loadImage, которая будет загружать картинки. Пусть первым параметром эта функция принимает
+  путь к картинкам [], Напишите код, который дождется окончания загрузки всех картинок, а затем добавит их в цикле в
+  конец body. :
+</p>
+</body>
+<script>
+
+    let src = ["xbox.jpg", 'relax.png'];
+
+
+    function loadImage(src) {
+        let array_promise = [];
+        if (!Array.isArray(src)) return;
+        if (src.length == 0) return;
+
+        src.forEach(x => {
+            let img = document.createElement("img");
+            img.src = x;
+            let promise = new Promise((resolve, reject) => {
+                img.addEventListener("load", () => {
+                    resolve(img)
+                })
+                img.addEventListener("error", () => {
+                    reject(new Error('image ' + src + ' loaderror'))
+                })
+            })
+            array_promise.push(promise);
+        })
+        return array_promise;
+    }
+
+    Promise.all(loadImage(src)).then(
+        (resolve) => {
+            resolve.forEach(x => {
+                document.body.appendChild(x);
+            })
+        }
+    ).catch(error => console.log(error + " *** "))
+
+</script>
+</body>
+</html>
+
