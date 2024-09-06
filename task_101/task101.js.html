@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 101 (97)</title>
+</head>
+<body>
+<h1>Задача 97</h1>
+<h2>Селекты городов и стран</h2>
+<div>Даны два селекта: с городами и странами. Сделайте так, чтобы при смене выбора страны, в селекте с городами появлялись города выбранной страны.</div>
+<hr>
+
+
+<label for="country">Страна:</label>
+<select id="country" onchange="changeCities()">
+  <option value="">Выберите страну</option>
+  <option value="country1">Cтрана1</option>
+  <option value="country2">Страна2</option>
+
+</select>
+
+<label for="cities">Город:</label>
+<select id="cities">
+  <option value="">Выберите город</option>
+</select>
+
+<script>
+    const citiesInCountry = {
+        country1:["страна1_город1","страна1_город2","страна1_город3"],
+        country2:["страна2_город1","страна2_город2","страна2_город3"],
+    };
+
+    function changeCities() {
+        const countrySelect = document.getElementById('country');
+        const citiesSelect = document.getElementById('cities');
+
+        // Очистка селекта
+        citiesSelect.innerHTML = '<option value="">Выберите город</option>';
+
+        // сморим какая страна
+        const selectedCountry = countrySelect.value;
+        //console.log(selectedCountry)
+        
+        if (selectedCountry && citiesInCountry[selectedCountry]) {
+            const cities = citiesInCountry[selectedCountry];
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citiesSelect.appendChild(option);
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
