@@ -30,6 +30,8 @@
         country2:["страна2_город1","страна2_город2","страна2_город3"],
     };
 
+
+
     function changeCities() {
         const countrySelect = document.getElementById('country');
         const citiesSelect = document.getElementById('cities');
@@ -40,7 +42,7 @@
         // сморим какая страна
         const selectedCountry = countrySelect.value;
         //console.log(selectedCountry)
-        
+
         if (selectedCountry && citiesInCountry[selectedCountry]) {
             const cities = citiesInCountry[selectedCountry];
             cities.forEach(city => {
@@ -51,6 +53,11 @@
             });
         }
     }
+
+
+
+
+
 </script>
 
 </body>
